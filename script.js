@@ -13,13 +13,12 @@ directionalLight.position.set(5, 5, 5);
 scene.add(directionalLight);
 
 // Load car model
-const GLTFLoader = THREE.GLTFLoader;
 const loader = new THREE.GLTFLoader();
 let car;
 loader.load('https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/main/2.0/SportCar/glTF/SportCar.gltf', function (gltf) {
     car = gltf.scene;
     car.scale.set(2, 2, 2);
-    car.position.set(0, -1, 0);
+    car.position.set(-3, 0, 0);  // Starting position
     scene.add(car);
     
     // Hide loading text
@@ -37,41 +36,18 @@ road.position.y = -1.1;
 scene.add(road);
 
 // Camera position
-camera.position.set(2, 1, 5);
+camera.position.set(5, 2, 10);
 camera.lookAt(0, 0, 0);
 
-// Background motion effect
-const bgCanvas = document.getElementById("bgCanvas");
-const bgCtx = bgCanvas.getContext("2d");
-bgCanvas.width = window.innerWidth;
-bgCanvas.height = window.innerHeight;
-
-// Animated background
-function animateBackground() {
-    bgCtx.fillStyle = "rgba(255, 255, 255, 0.05)";
-    bgCtx.fillRect(0, 0, bgCanvas.width, bgCanvas.height);
-
-    requestAnimationFrame(animateBackground);
-}
-animateBackground();
-
-// Animation loop
+// Animate the car driving from the right front corner
 function animate() {
     requestAnimationFrame(animate);
 
-    // Move road to simulate driving
-    road.position.z += 0.2;
-    if (road.position.z > 5) {
-        road.position.z = -5;
-    }
-
-    // Rotate wheels if car is loaded
     if (car) {
-        car.children.forEach(part => {
-            if (part.name.includes("Wheel")) {
-                part.rotation.x += 0.1;
-            }
-        });
+        car.position.x += 0.05;
+        if (car.position.x > 10) {  // Reset position when off screen
+            car.position.x = -3;
+        }
     }
     
     renderer.render(scene, camera);
