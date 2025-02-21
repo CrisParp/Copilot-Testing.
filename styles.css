@@ -30,13 +30,6 @@ body, html {
     animation: fadeOut 2s ease-out forwards;
 }
 
-/* Motion blur effect */
-@keyframes motionBlur {
-    0% { filter: blur(1px); }
-    50% { filter: blur(3px); }
-    100% { filter: blur(1px); }
-}
-
 /* Fade-out effect for the loading screen */
 @keyframes fadeOut {
     0% { opacity: 1; }
