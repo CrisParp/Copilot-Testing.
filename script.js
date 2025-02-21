@@ -18,7 +18,7 @@ let car;
 loader.load('https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/main/2.0/SportCar/glTF/SportCar.gltf', function (gltf) {
     car = gltf.scene;
     car.scale.set(2, 2, 2);
-    car.position.set(-3, 0, 0);  // Starting position
+    car.position.set(-5, -1, 0);  // Starting position
     scene.add(car);
     
     // Hide loading text
@@ -28,15 +28,15 @@ loader.load('https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/m
 });
 
 // Road
-const roadGeometry = new THREE.PlaneGeometry(10, 50);
-const roadMaterial = new THREE.MeshStandardMaterial({ color: 0x222222 });
+const roadGeometry = new THREE.PlaneGeometry(10, 100);
+const roadMaterial = new THREE.MeshStandardMaterial({ color: 0x444444 });
 const road = new THREE.Mesh(roadGeometry, roadMaterial);
 road.rotation.x = -Math.PI / 2;
 road.position.y = -1.1;
 scene.add(road);
 
 // Camera position
-camera.position.set(5, 2, 10);
+camera.position.set(0, 2, 10);
 camera.lookAt(0, 0, 0);
 
 // Animate the car driving from the right front corner
@@ -45,8 +45,8 @@ function animate() {
 
     if (car) {
         car.position.x += 0.05;
-        if (car.position.x > 10) {  // Reset position when off screen
-            car.position.x = -3;
+        if (car.position.x > 5) {  // Reset position when off screen
+            car.position.x = -5;
         }
     }
     
