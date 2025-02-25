@@ -3,7 +3,13 @@ window.onload = function() {
     const ctx = canvas.getContext('2d');
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-
+    
+    console.log(canvas.width, canvas.height);
+    if (!ctx) {
+        console.error('Canvas context not initialized');
+        return;
+    }
+    
     let particlesArray = [];
     const numberOfParticles = 100;
 
@@ -51,6 +57,7 @@ window.onload = function() {
 
             particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
         }
+        console.log('Particles initialized', particlesArray);
     }
 
     function animate() {
@@ -70,4 +77,8 @@ window.onload = function() {
         canvas.height = window.innerHeight;
         init();
     });
+
+    window.onerror = function(message, source, lineno, colno, error) {
+        console.error(`Error: ${message} at ${source}:${lineno}:${colno}`, error);
+    };
 }
