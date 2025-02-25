@@ -1,25 +1,11 @@
-body {
+body, html {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #000; /* Night background */
 }
-#city {
-    position: relative;
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-}
-#city img {
+
+canvas {
+    display: block;
     width: 100%;
-    height: auto;
-}
-#car {
-    position: absolute;
-    bottom: 10%;
-    left: -20%;
-}
-#car img {
-    width: 300px; /* Adjust size as needed */
-    height: auto;
+    height: 100%;
 }
