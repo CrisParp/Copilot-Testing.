@@ -1,13 +1,14 @@
 window.onload = function() {
     const canvas = document.getElementById('wallpaperCanvas');
     const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
 
     if (!ctx) {
         console.error('Canvas context not initialized');
         return;
     }
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 
     let particlesArray = [];
     const numberOfParticles = 100;
@@ -75,4 +76,4 @@ window.onload = function() {
         canvas.height = window.innerHeight;
         init();
     });
-}
+};
