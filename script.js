@@ -1,15 +1,26 @@
-function randomPosition() {
-    const x = Math.floor(Math.random() * window.innerWidth);
-    const y = Math.floor(Math.random() * window.innerHeight);
-    return { x, y };
+const bubbleContainer = document.getElementById('bubble-container');
+
+function createBubble() {
+    const bubble = document.createElement('div');
+    bubble.classList.add('bubble');
+    
+    // Random size and position
+    const size = Math.random() * 80 + 20; // Bubble size between 20px and 100px
+    bubble.style.width = `${size}px`;
+    bubble.style.height = `${size}px`;
+    bubble.style.left = `${Math.random() * window.innerWidth}px`;
+    
+    // Random animation duration
+    const duration = Math.random() * 5 + 5; // Duration between 5s and 10s
+    bubble.style.animationDuration = `${duration}s`;
+    
+    bubbleContainer.appendChild(bubble);
+    
+    // Remove bubble after animation
+    setTimeout(() => {
+        bubble.remove();
+    }, duration * 1000);
 }
 
-document.querySelectorAll('.circle').forEach(circle => {
-    const size = Math.random() * 100 + 50;
-    circle.style.width = `${size}px`;
-    circle.style.height = `${size}px`;
-    const { x, y } = randomPosition();
-    circle.style.left = `${x}px`;
-    circle.style.top = `${y}px`;
-    circle.style.animationDuration = `${Math.random() * 20 + 10}s`;
-});
+// Create bubbles at intervals
+setInterval(createBubble, 500);
