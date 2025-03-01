@@ -1,15 +1,10 @@
-from http.server import SimpleHTTPRequestHandler, HTTPServer
+import http.server
+import socketserver
 
-class CustomHandler(SimpleHTTPRequestHandler):
-    def end_headers(self):
-        self.send_header('Access-Control-Allow-Origin', '*')
-        SimpleHTTPRequestHandler.end_headers(self)
+PORT = 8000
 
-def run(server_class=HTTPServer, handler_class=CustomHandler, port=8000):
-    server_address = ('', port)
-    httpd = server_class(server_address, handler_class)
-    print(f'Serving on port {port}')
+Handler = http.server.SimpleHTTPRequestHandler
+
+with socketserver.TCPServer(("", PORT), Handler) as httpd:
+    print(f"Serving at http://localhost:{PORT}")
     httpd.serve_forever()
-
-if __name__ == '__main__':
-    run()
